@@ -73,14 +73,14 @@ function Shortener({ links, setLinks }) {
       try {
         new URL(url); // Validate URL
       } catch {
-        newErrors[idx] = "❌ Invalid URL";
+        newErrors[idx] = " Invalid URL";
         logAction("Error", { reason: "Invalid URL", url });
         return;
       }
 
       const code = generateShortcode();
       if (links.find((l) => l.shortcode === code)) {
-        newErrors[idx] = "❌ Duplicate shortcode";
+        newErrors[idx] = " Duplicate shortcode";
         logAction("Error", { reason: "Duplicate shortcode", code });
         return;
       }
@@ -187,7 +187,7 @@ function RedirectPage({ links }) {
     const link = links.find((l) => l.shortcode === code);
 
     if (!link) {
-      alert("❌ Shortcode not found!");
+      alert("Shortcode not found!");
       logAction("Error", { reason: "Shortcode not found", code });
       navigate("/");
       return;
@@ -195,7 +195,7 @@ function RedirectPage({ links }) {
 
     const now = new Date().getTime();
     if (now - link.createdAt > link.expiryMinutes * 60000) {
-      alert("⏰ Link expired!");
+      alert("Link expired!");
       logAction("Error", { reason: "Link expired", code });
       navigate("/");
       return;
@@ -213,7 +213,7 @@ function StatsPage({ links }) {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        📊 URL Shortener Statistics
+        URL Shortener Statistics
       </Typography>
       <Paper>
         <Table>
@@ -248,7 +248,7 @@ function StatsPage({ links }) {
   );
 }
 
-// 🔹 Main App
+//  Main App
 function App() {
   const [links, setLinks] = useState([]);
 
@@ -269,3 +269,4 @@ function App() {
 }
 
 export default App;
+
